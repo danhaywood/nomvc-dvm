@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Query Instances</Title>
+      <Author>Naked Objects Group</Author>
+      <Description>Adds code to query instances of objects</Description>
+      <HelpUrl>www.nakedobjects.net</HelpUrl>
+      <Shortcut>qi</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Object>
+          <ID>Type</ID>
+          <ToolTip>The type of instances to be queried.</ToolTip>
+          <Default>Type</Default>
+        </Object>
+        <Literal>
+          <ID>Condition</ID>
+          <Default>Condition</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="VB" Kind="method decl"><![CDATA[Dim query = From x In container.Instances(Of $Type$)()
+			Where x.
+			Select x]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Injected Container</Title>
+      <Author>Naked Objects Group</Author>
+      <Description>
+        Adds a property containing a reference to an IDomainObjectContainer, to be injected automatically when the object is instantiated.
+      </Description>
+      <HelpUrl>www.nakedobjects.net</HelpUrl>
+      <SnippetTypes />
+      <Keywords />
+      <Shortcut>injc</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations />
+      <Code Language="VB" Delimiter="$">
+  <![CDATA[#Region "Injected: Container"
+    
+Protected myContainer As IDomainObjectContainer
+
+Public Property Container() As IDomainObjectContainer
+  Protected Get 
+     return myContainer
+  End Get
+  Set (value As IDomainObjectContainer)
+    myContainer = value
+  End Set
+End Property
+
+#End Region]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

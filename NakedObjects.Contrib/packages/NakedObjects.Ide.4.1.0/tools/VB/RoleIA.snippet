@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Role Interface Association</Title>
+      <Author>Naked Objects Group</Author>
+      <Description>Code to support an association defined by a 'role' Interface (one with mutiple implementations)</Description>
+      <HelpUrl>www.nakedobjects.net</HelpUrl>
+      <SnippetTypes />
+      <Keywords />
+      <Shortcut>roleia</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations>
+        <Literal Editable="true" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+          <ID>Name</ID>
+          <Type></Type>
+          <ToolTip>The name for the property holding the associated object</ToolTip>
+          <Default>PropertyName</Default>
+          <Function></Function>
+        </Literal>
+        <Object Editable="true" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+          <ID>InterfaceType</ID>
+          <Type></Type>
+          <ToolTip>The Interface defining the type of object to be associated</ToolTip>
+          <Default>IType</Default>
+          <Function></Function>
+        </Object>
+      </Declarations>
+      <Code Language="VB" Kind="method decl" Delimiter="$"><![CDATA[
+        'Imports NakedObjects.Services  (you will need the no-helpers.dll assembly)
+        
+        #Region "$Name$ Property of type $InterfaceType$ ('role' interface)"
+
+#Region "Injected: IObjectFinder"
+    'IMPORTANT:  Register an implementation of IObjectFinder e.g. SingleKeyObjectFinder 
+    'Suggestion: Move this property into an 'Injected Services' region
+    Private myObjectFinder As IObjectFinder
+    Public Property ObjectFinder() As IObjectFinder
+        Protected Get
+            Return myObjectFinder
+        End Get
+        Set(ByVal value As IObjectFinder)
+            myObjectFinder = value
+        End Set
+    End Property
+
+#End Region
+
+
+    'Holds a compound key that represents both the
+    'actual type and the identity of the a$ociated object.
+    <Hidden()>
+    Public Overridable Property $Name$CompoundKey() As String
+
+
+    Private _$Name$ As $InterfaceType$
+
+    <NotPersisted()>
+    Public Property $Name$() As $InterfaceType$
+        Get
+            If _$Name$ Is Nothing And (Not String.IsNullOrEmpty($Name$CompoundKey)) Then
+                _$Name$ = ObjectFinder.FindObject(Of $InterfaceType$)($Name$CompoundKey)
+            End If
+            Return _$Name$
+        End Get
+        Set(ByVal value As $InterfaceType$)
+            _$Name$ = value
+            If value Is Nothing Then
+                $Name$CompoundKey = Nothing
+            Else
+                $Name$CompoundKey = ObjectFinder.GetCompoundKey(Of $InterfaceType$)(value)
+            End If
+        End Set
+
+    End Property
+#End Region
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Keywords />
+      <Title>Role Interface Association</Title>
+      <Author>Naked Objects Group</Author>
+      <Description>Code to support an association defined by a 'role' Interface (one with mutiple implementations)</Description>
+      <HelpUrl>www.nakedobjects.net</HelpUrl>
+      <Shortcut>roleia</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations>
+        <Literal Editable="true">
+          <ID>Name</ID>
+          <ToolTip>The name for the property holding the associated object</ToolTip>
+          <Default>PropertyName</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Object Editable="true">
+          <ID>InterfaceType</ID>
+          <ToolTip>The Interface defining the type of object to be associated</ToolTip>
+          <Default>IType</Default>
+          <Function>
+          </Function>
+          <Type>
+          </Type>
+        </Object>
+      </Declarations>
+      <Code Language="csharp" Kind="method decl" Delimiter="$"><![CDATA[
+//Imports NakedObjects.Services  (you will need the no-helpers.dll assembly)
+
+#region $Name$ Property of type $InterfaceType$ ('role' interface)
+
+#region Injected: IObjectFinder
+	//IMPORTANT:  Register an implementation of IObjectFinder e.g. ObjectFinder in Run class 
+	//Suggestion: Move this property into an 'Injected Services' region
+
+  public IObjectFinder ObjectFinder	{protected get; set;}
+
+#endregion
+
+	//Holds a compound key that represents both the
+	//actual type and the identity of the associated object.
+	[Hidden()]
+	public virtual string $Name$CompoundKey {get; set;}
+
+	private $InterfaceType$ _$Name$;
+
+	[NotPersisted()]
+	public $InterfaceType$ $Name$ {
+		get {
+			if (_$Name$ == null & (! (string.IsNullOrEmpty($Name$CompoundKey)))) {
+				_$Name$ = ObjectFinder.FindObject<$InterfaceType$>($Name$CompoundKey);
+			}
+			return _$Name$;
+		}
+		set {
+			_$Name$ = value;
+			if (value == null) {
+				$Name$CompoundKey = null;
+			}
+			else {
+				$Name$CompoundKey = ObjectFinder.GetCompoundKey<$InterfaceType$>(value);
+			}
+		}
+  }
+  #endregion]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

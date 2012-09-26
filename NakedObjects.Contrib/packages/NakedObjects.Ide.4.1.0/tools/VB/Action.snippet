@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Action</Title>
+      <Author>Naked Objects Group</Author>
+      <Description>Adds a method intended to be a user action.</Description>
+      <HelpUrl>www.nakedobjects.net</HelpUrl>
+      <Shortcut>act</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>Name</ID>
+          <ToolTip>Enter the name for the property</ToolTip>
+          <Default>Name</Default>
+        </Literal>
+        <Literal>
+          <ID>Parameters</ID>
+          <ToolTip>List of parameters for the action, marked up with &lt;Named()&gt; and &lt;Optional()&gt; as needed</ToolTip>
+        </Literal>
+        <Object>
+          <ID>ReturnType</ID>
+          <ToolTip>The type of object that the action will return to the user (if any)</ToolTip>
+        </Object>
+        <Object>
+          <ID>Condition for hiding</ID>
+          <Type>boolean</Type>
+          <ToolTip>Condition (typically based on the state of the object) for hiding this action (i.e. removing it from the object's action menu)</ToolTip>
+          <Default>False</Default>
+        </Object>
+        <Object>
+          <ID>Condition For Disabling</ID>
+          <Type>boolean</Type>
+          <ToolTip>Condition for Disabling an action (e.g. greying it out on the object menu), typically based on the state of the object
+</ToolTip>
+          <Default>False</Default>
+        </Object>
+        <Object>
+          <ID>Reason why action is disabled</ID>
+          <Type>String</Type>
+          <ToolTip>Message to be displayed to the user indicating why a menu action has been disabled (e.g. greyed-out)</ToolTip>
+          <Default>"This action is disabled"</Default>
+        </Object>
+        <Object>
+          <ID>Condition For Invalid Parameter(s)</ID>
+          <Type>boolean</Type>
+          <ToolTip>Conditions under which one or more of the parameters is invalid</ToolTip>
+          <Default>False</Default>
+        </Object>
+        <Object>
+          <ID>Invalid Parameters Message</ID>
+          <Type>String</Type>
+          <ToolTip>Message to be passed to user if they attempt to invoke an action with any invalid parameters</ToolTip>
+          <Default>"Parameter values are not valid"</Default>
+        </Object>
+        <Object>
+          <ID>Default Parameter Values</ID>
+          <Type>Object()</Type>
+          <ToolTip>Return an array (or typed List) of values to be provided to the user as defaults.  Array or List must have exactly the same number of elements as there are parameters. For parameters where no default value is to be specified, use Nothing</ToolTip>
+          <Default>Nothing</Default>
+        </Object>
+        <Object>
+          <ID>Choices</ID>
+          <Type>Object()()</Type>
+          <ToolTip>An array, with one element for each of the corresponding action's parameters.  Each element in the array is either Nothing (if that parameter has no choices) or is itself an array, representing the set of values from which the user must select for that parameter (e.g. rendered as a drop-down list).</ToolTip>
+          <Default>Nothing</Default>
+        </Object>
+      </Declarations>
+      <Code Language="VB" Kind="method decl"><![CDATA[#Region "$Name$ (Action)"
+
+<MemberOrder(1)>
+Public Function $Name$($Parameters$) As $ReturnType$
+	'TODO: Body of action
+End Function
+
+
+'Use 'hide', 'dis', 'val', 'actdef', 'actcho' shortcuts to add supporting methods here.
+#End Region]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

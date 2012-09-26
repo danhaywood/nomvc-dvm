@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Keywords />
+      <Title>Collection</Title>
+      <Author>Naked Objects Group</Author>
+      <Description>Adds an Overridable Collection with AddTo and RemoveFrom methods</Description>
+      <HelpUrl>www.nakedobjects.net</HelpUrl>
+      <Shortcut>coll</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations>
+        <Literal Editable="true">
+          <ID>Name</ID>
+          <ToolTip>Enter the name for the collection</ToolTip>
+          <Default>Name</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Object Editable="true">
+          <ID>Type</ID>
+          <ToolTip>The type of object to be contained in the collection</ToolTip>
+          <Default>Type</Default>
+          <Function>
+          </Function>
+          <Type>
+          </Type>
+        </Object>
+      </Declarations>
+      <Code Language="vb" Kind="method decl" Delimiter="$"><![CDATA[#Region "$Name$ (collection)"
+    Private _$Name$ As ICollection(Of $Type$) = New List(Of $Type$)
+
+	<Disabled()>
+    Public Overridable Property $Name$() As ICollection(Of $Type$)
+        Get
+            Return _$Name$
+        End Get
+
+        Set(ByVal value As ICollection(Of $Type$))
+            _$Name$ = value
+        End Set
+    End Property
+
+    Public Sub AddTo$Name$(ByVal value As $Type$)
+        If Not _$Name$.Contains(value) Then
+            _$Name$.Add(value)
+        End If
+    End Sub
+
+    Public Sub RemoveFrom$Name$(ByVal value As $Type$)
+        If _$Name$.Contains(value) Then
+            _$Name$.Remove(value)
+        End If
+    End Sub
+
+	Public Function Choices0RemoveFrom$Name$() As IList(Of $Type$)
+        Return _$Name$.ToList()
+    End Function
+
+#End Region]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

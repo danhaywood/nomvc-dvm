@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>List Query</Title>
+      <Author>Naked Objects Group</Author>
+      <Description>Adds a query method to return a list of matching objects.</Description>
+      <HelpUrl>www.nakedobjects.net</HelpUrl>
+      <Shortcut>list</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>Name</ID>
+          <ToolTip>Enter the name for the list query</ToolTip>
+          <Default>List</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>Parameters</ID>
+          <ToolTip>List of parameters for the action, marked up with &lt;Named()&gt; and &lt;Optional()&gt; as needed</ToolTip>
+          <Default>
+          </Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>Condition</ID>
+          <ToolTip>
+          </ToolTip>
+          <Default>Condition</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Object Editable="true">
+          <ID>Type</ID>
+          <ToolTip>The type of object being searched</ToolTip>
+          <Default>Type</Default>
+          <Function>
+          </Function>
+          <Type>
+          </Type>
+        </Object>
+      </Declarations>
+      <Code Language="vb" Kind="method decl"><![CDATA[#Region "$Name$"
+	Public Function $Name$($Parameters$)As IQueryable(of $Type$)
+
+		Return From obj In Container.Instances(Of $Type$)()
+			   Where obj.$Condition$
+			   Select obj
+	End Function
+#End Region]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

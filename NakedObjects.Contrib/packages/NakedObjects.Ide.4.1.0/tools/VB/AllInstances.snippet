@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>All Instances</Title>
+      <Author>Naked Objects Group</Author>
+      <Description>Adds a method that returns all instances of specified type.</Description>
+      <HelpUrl>www.nakedobjects.net</HelpUrl>
+      <Shortcut>alli</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>Name</ID>
+          <ToolTip>
+          </ToolTip>
+          <Default>All</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>Type</ID>
+          <ToolTip>
+          </ToolTip>
+          <Default>Type</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="vb"><![CDATA['All $Type$s
+Public Function $Name$$Type$s() As IQueryable(of $Type$)
+	Return Container.Instances(Of $Type$)()
+End Function]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

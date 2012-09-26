@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Property - Overridable</Title>
+      <Author>Naked Objects Group</Author>
+      <Description>Adds an overridable property.</Description>
+      <HelpUrl>www.nakedobjects.net</HelpUrl>
+      <SnippetTypes />
+      <Keywords />
+      <Shortcut>propo</Shortcut>
+    </Header>
+    <Snippet>
+      <References />
+      <Imports />
+      <Declarations>
+        <Literal Editable="true" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+          <ID>Name</ID>
+          <Type />
+          <ToolTip>Enter the name for the property</ToolTip>
+          <Default>Name</Default>
+          <Function />
+        </Literal>
+        <Literal Editable="true" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+          <ID>Type</ID>
+          <Type />
+          <ToolTip>Enter the Type of the Property</ToolTip>
+          <Default>String</Default>
+          <Function />
+        </Literal>
+      </Declarations>
+      <Code Language="VB" Kind="method decl" Delimiter="$"><![CDATA[Public Overridable Property $Name$() As $Type$
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

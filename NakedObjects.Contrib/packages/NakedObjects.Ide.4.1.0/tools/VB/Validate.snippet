@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Validate</Title>
+      <Author>Naked Objects Group</Author>
+      <Description>Adds a method to validate the value(s) being entered into a corresponding property or as parameters for a corresponding action.</Description>
+      <HelpUrl>www.nakedobjects.net</HelpUrl>
+      <Shortcut>val</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>PropertyOrActionName</ID>
+          <ToolTip>Enter the name of the property or action for which values are to be validated.</ToolTip>
+          <Default>PropertyOrActionName</Default>
+        </Literal>
+        <Object>
+          <ID>Condition For Invalid Parameter(s)</ID>
+          <Type>boolean</Type>
+          <ToolTip>Specify the rule(s) that define invalid parameter(s).</ToolTip>
+          <Default>false</Default>
+        </Object>
+        <Literal>
+          <ID>User Message</ID>
+          <ToolTip>Enter the message explaining why the value(s) provided are not valid.</ToolTip>
+          <Default>User Message</Default>
+        </Literal>
+        <Literal>
+          <ID>Parameters</ID>
+          <ToolTip>Enter a single parameter matching the property type or list of parameters matching the action method signature.</ToolTip>
+          <Default>parameters</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="VB" Kind="method decl"><![CDATA[Public Function Validate$PropertyOrActionName$($Parameters$) As String
+    Dim rb As New ReasonBuilder
+    If $Condition For Invalid Parameter(s)$ Then	
+		rb.Append("$User Message$")
+	End If
+	Return rb.Reason
+End Function
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Modify and Clear</Title>
+      <Author>Naked Objects Group</Author>
+      <Description>Adds Modify and Clear methods to intercept a user modification to a corresponding property.</Description>
+      <HelpUrl>www.nakedobjects.net</HelpUrl>
+      <Shortcut>mod</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>PropertyName</ID>
+          <ToolTip>Enter the name of the property being modified.</ToolTip>
+          <Default>PropertyName</Default>
+        </Literal>
+        <Literal>
+          <ID>Type</ID>
+          <Default>Type</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="VB" Kind="method decl">
+  <![CDATA[Public Overridable Sub Modify$PropertyName$(value As $Type$)
+	$PropertyName$ = value
+	'Add additional behaviour here
+End Sub
+
+Public Overridable Sub Clear$PropertyName$()
+	'Add additional behaviour here
+	$PropertyName$ = Nothing
+End Sub
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
